@@ -1,0 +1,20 @@
+<p>
+  login works!
+</p>
+<form [formGroup]="loginforms">
+  <label for="">UserName:</label>
+  <input type="text" name="username" formControlName="username">
+  <div *ngIf="loginforms.controls['username'].invalid && loginforms.controls['username'].touched">
+    <small *ngIf="loginforms.controls['username'].errors?.['required']">please enter username</small>
+    <small *ngIf="loginforms.controls['username'].errors?.['minlength']">please enter username with min length as 3</small>
+
+  </div>
+  <label for="">Password:</label>
+  <input type="password" name="password" formControlName="password">
+  <label for="">Conformpassword:</label>
+  <input type="password" name="cpassword" formControlName="cpassword">
+  <div *ngIf="!loginforms.controls['cpassword'].valid">
+    <small *ngIf="!loginforms.controls['cpassword'].errors?.['validtor']" >please enter same password</small>
+  </div>
+    <button [disabled]="!loginforms.valid">login</button>
+</form>

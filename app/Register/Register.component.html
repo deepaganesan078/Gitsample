@@ -1,0 +1,35 @@
+<p>
+  Register
+</p>
+<div>
+  <form #registerForm="ngForm" >
+    {{registerForm.value|json}}
+  <div class="form-group">
+  <label for="">UserName:</label>
+  <input type="text" name="username" #uname=ngModel [(ngModel)]="username" required minlength="3">
+  </div>
+
+  <div *ngIf="uname.errors && (uname.dirty||uname.touched)" >
+    <div [hidden]="!uname.errors['required']">Please enter username</div>
+
+    <div [hidden]="!uname.errors['minlength']">Please enter username with atleast 3 characters</div>
+  </div>
+  touched:{{uname.touched}}<br/>
+  un touched:{{uname.untouched}}<br/>
+  valid:{{uname.valid}}<br/>
+  invalid:{{uname.invalid}}<br/>
+  pristine:{{uname.pristine}}<br/>
+  dirty:{{uname.dirty}}<br/>
+  <div class="form-group">
+    <label for="">MobileNo:</label>
+    <input type="text" name="mobileno" [(ngModel)]="mobileno">
+    </div>
+    <div class="form-group">
+      <label for="">EmailId:</label>
+      <input type="text" name="emailid" [(ngModel)]="emailid">
+      </div>
+      <button (click)="submitform()" [disabled]="!registerForm.form.valid">Submit</button>
+
+  </form>
+</div>
+
